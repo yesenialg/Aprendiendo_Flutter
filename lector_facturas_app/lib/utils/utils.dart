@@ -3,17 +3,17 @@ import 'package:lector_facturas_app/models/scan_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 launchInBrowser(BuildContext context, ScanModel scan) async {
-  final valor = scan.valor;
+  final cufe = scan.cufe;
   const start = "CUFE=";
   const end = "\n";
 
-  if (valor.contains(start)) {
-    final startIndex = valor.indexOf(start);
-    final endIndex = valor.indexOf(end, startIndex + start.length);
-    final cufe = valor.substring(startIndex + start.length, endIndex);
+  if (cufe.contains(start)) {
+    final startIndex = cufe.indexOf(start);
+    final endIndex = cufe.indexOf(end, startIndex + start.length);
+    final idcufe = cufe.substring(startIndex + start.length, endIndex);
 
     final url_dian =
-        'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$cufe';
+        'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$idcufe';
 
     if (await canLaunch(url_dian)) {
       await launch(url_dian);

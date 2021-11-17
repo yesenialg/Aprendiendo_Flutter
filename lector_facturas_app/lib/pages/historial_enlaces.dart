@@ -28,12 +28,12 @@ class EnlacesPage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.home, color: Theme.of(context).primaryColor),
               title: Text(
-                scans[i].valor.substring(( scans[i].valor.indexOf('NroFactura=')) + 'NroFactura='.length,scans[i].valor.indexOf('\n', ( scans[i].valor.indexOf('NroFactura=')) + 'NroFactura='.length))
+                scans[i].cufe.substring(( scans[i].cufe.indexOf('NroFactura=')) + 'NroFactura='.length,scans[i].cufe.indexOf('\n', ( scans[i].cufe.indexOf('NroFactura=')) + 'NroFactura='.length))
               ),
               subtitle: Text(
                 'ID: '+scans[i].id.toString() +'\n'+
-                'FECHA: ' + scans[i].valor.substring(( scans[i].valor.indexOf('FechaFactura=')) + 'FechaFactura='.length,scans[i].valor.indexOf('\n', ( scans[i].valor.indexOf('FechaFactura=')) + 'FechaFactura='.length))+'\n'+
-                'VALOR: ' + scans[i].valor.substring(( scans[i].valor.indexOf('ValorTotalFactura=')) + 'ValorTotalFactura='.length,scans[i].valor.indexOf('\n', ( scans[i].valor.indexOf('ValorTotalFactura=')) + 'ValorTotalFactura='.length))
+                'FECHA: ' + scans[i].cufe.substring(( scans[i].cufe.indexOf('FechaFactura=')) + 'FechaFactura='.length,scans[i].cufe.indexOf('\n', ( scans[i].cufe.indexOf('FechaFactura=')) + 'FechaFactura='.length))+'\n'+
+                'cufe: ' + scans[i].cufe.substring(( scans[i].cufe.indexOf('cufeTotalFactura=')) + 'cufeTotalFactura='.length,scans[i].cufe.indexOf('\n', ( scans[i].cufe.indexOf('cufeTotalFactura=')) + 'cufeTotalFactura='.length))
                 ),
               trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
               onTap: () {
