@@ -13,12 +13,11 @@ class ScanButton extends StatelessWidget {
             '#3D8BEF', 'Cancelar', false, ScanMode.QR);
 
         if (barcodeScanRes != '-1') {
-          
+
           final scanListProvider =
               Provider.of<ScanListProvider>(context, listen: false);
 
           final nuevoScan = await scanListProvider.nuevoScan(barcodeScanRes);
-
           launchInBrowser(context, nuevoScan);
         } else {
           return;

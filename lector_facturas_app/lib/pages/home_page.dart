@@ -15,7 +15,10 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: Text("Home page"),
         actions: [IconButton(
-          onPressed: (){}, 
+          onPressed: (){
+            Provider.of<ScanListProvider>(context, listen: false).borrarScans();
+
+          }, 
           icon: Icon(Icons.delete_forever),
         )],
       ),
