@@ -28,12 +28,12 @@ class DBProvider{
     print(path);
     return await openDatabase(
       path, 
-      version: 1, 
+      version: 2, 
       onOpen: (db){},
       onCreate: (Database db, int version) async {
         await db.execute('''
           CREATE TABLE Scans(
-            id INTENER PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             tipo TEXT,
             valor TEXT
           )
