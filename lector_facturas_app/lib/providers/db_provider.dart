@@ -25,15 +25,14 @@ class DBProvider{
   Future<Database> initDB() async{
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, 'ScansDB.db');
-    print(path);
     return await openDatabase(
       path, 
-      version: 2, 
+      version: 3, 
       onOpen: (db){},
       onCreate: (Database db, int version) async {
         await db.execute('''
           CREATE TABLE Scans(
-            id INTEGER PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             tipo TEXT,
             valor TEXT
           )
@@ -44,15 +43,14 @@ class DBProvider{
 
   Future<int>nuevoScanRaw(ScanModel nuevoScan ) async {
 
-    final id = nuevoScan.id;
     final tipo = nuevoScan.tipo;
     final valor = nuevoScan.valor;
 
     final db = await database;
 
     final res = await db.rawInsert('''
-      INSERT INTO Scans(id, tipo, valor)
-      VALUES ($id, '$tipo', '$valor')
+      INSERT INTO Scans(tipo, valor)
+      VALUES ('$tipo', '$valor')
     ''');
 
     return res;

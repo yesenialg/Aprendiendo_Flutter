@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lector_facturas_app/pages/historial_enlaces.dart';
 import 'package:lector_facturas_app/providers/db_provider.dart';
+import 'package:lector_facturas_app/providers/scan_list_provider.dart';
 import 'package:lector_facturas_app/widgets/custom_navigatorbar.dart';
 import 'package:lector_facturas_app/widgets/scan_button.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -29,9 +31,10 @@ class HomePage extends StatelessWidget {
 class demo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    DBProvider.db.database;
-    final tempScan = new ScanModel(valor: 'http://google.com');
-    DBProvider.db.nuevoScan(tempScan);
+    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
+
+    scanListProvider.cargarScans();
+
     return EnlacesPage();
   }
 }
