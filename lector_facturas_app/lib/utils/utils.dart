@@ -7,15 +7,20 @@ launchInBrowser(BuildContext context, ScanModel scan) async {
   const start = "CUFE=";
   const end = "\n";
 
-  final startIndex = valor.indexOf(start);
-  final endIndex = valor.indexOf(end, startIndex + start.length);
-  final cufe= valor.substring(startIndex + start.length, endIndex);
+  if (valor.contains(start)) {
+    final startIndex = valor.indexOf(start);
+    final endIndex = valor.indexOf(end, startIndex + start.length);
+    final cufe = valor.substring(startIndex + start.length, endIndex);
 
-  final url_dian='https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$cufe';
+    final url_dian =
+        'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$cufe';
 
-     if (await canLaunch(url_dian)) {
+    if (await canLaunch(url_dian)) {
       await launch(url_dian);
     } else {
       throw 'Could not launch $url_dian';
-    } 
+    }
+  } else {
+    print('ESTE QR NO PERTENECE A LA DIAN');
+  }
 }
