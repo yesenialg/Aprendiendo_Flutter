@@ -66,6 +66,7 @@ class CardPage extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Column(
         children: <Widget>[
+          
           ListTile(
               leading: Icon(Icons.photo_album, color: Colors.blue),
               title: Text('Titulo'),
