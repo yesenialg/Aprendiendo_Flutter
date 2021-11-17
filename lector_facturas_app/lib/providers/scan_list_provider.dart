@@ -4,8 +4,8 @@ import 'package:lector_facturas_app/providers/db_provider.dart';
 class ScanListProvider extends ChangeNotifier{
   List<ScanModel> scans = [];
 
-  Future<ScanModel> nuevoScan(String valor) async {
-    final nuevoScan = new ScanModel(valor: valor);
+  Future<ScanModel> nuevoScan(String cufe) async {
+    final nuevoScan = new ScanModel(cufe: cufe);
     final id = await DBProvider.db.nuevoScanRaw(nuevoScan);
     nuevoScan.id = id;
 
