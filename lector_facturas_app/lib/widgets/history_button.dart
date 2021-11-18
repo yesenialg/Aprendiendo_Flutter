@@ -8,10 +8,12 @@ class HistoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () async {
+     heroTag: "history",
+     elevation: 50,
+      onPressed: () {
+        Navigator.pushNamed(context, 'table');
         
       },
-      elevation: 0,
       child: Icon(Icons.history),
     );
   }

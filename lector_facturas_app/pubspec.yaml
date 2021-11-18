@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^6.0.13
   sweetalert: ^0.0.1
   art_sweetalert: ^0.0.5
+  data_table_2: ^2.2.0
 
 dev_dependencies:
 

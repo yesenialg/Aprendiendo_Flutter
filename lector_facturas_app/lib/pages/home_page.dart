@@ -47,19 +47,25 @@ class HomePage extends StatelessWidget {
       ),
       body: _cargarScans(),
       //bottomNavigationBar: CustomNavigatorBar(),
-      floatingActionButton: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          ScanButton(),
-          HistoryButton(),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton:_crearBotones(),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       //bottomNavigationBar: ,
     );
   }
 }
+
+  Widget _crearBotones() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        
+        SizedBox(width: 200,height: 100),
+        ScanButton(),
+        Expanded(child: SizedBox()),
+        HistoryButton(),
+      ],
+    );
+  }
 
 class _cargarScans extends StatelessWidget {
   @override

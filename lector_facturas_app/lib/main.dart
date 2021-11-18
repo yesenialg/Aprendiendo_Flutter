@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lector_facturas_app/pages/home_page.dart';
+import 'package:lector_facturas_app/pages/table_page.dart';
 import 'package:lector_facturas_app/providers/scan_list_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
           initialRoute: 'home',
           routes: {
             'home': (_) => HomePage(),
+            'table': (_)=> TablePage(),
           },
         ));
   }
