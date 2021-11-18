@@ -27,14 +27,12 @@ class EnlacesPage extends StatelessWidget {
           child: Column(children: <Widget>[
             ListTile(
               leading: Icon(Icons.home, color: Theme.of(context).primaryColor),
-              title: Text(
-                scans[i].cufe.substring(( scans[i].cufe.indexOf('NroFactura=')) + 'NroFactura='.length,scans[i].cufe.indexOf('\n', ( scans[i].cufe.indexOf('NroFactura=')) + 'NroFactura='.length))
-              ),
+              title: Text('Nro Factura'+scans[i].num_factura ),
               subtitle: Text(
                 'ID: '+scans[i].id.toString() +'\n'+
-                'FECHA: ' + scans[i].cufe.substring(( scans[i].cufe.indexOf('FechaFactura=')) + 'FechaFactura='.length,scans[i].cufe.indexOf('\n', ( scans[i].cufe.indexOf('FechaFactura=')) + 'FechaFactura='.length))+'\n'+
-                'cufe: ' + scans[i].cufe.substring(( scans[i].cufe.indexOf('cufeTotalFactura=')) + 'cufeTotalFactura='.length,scans[i].cufe.indexOf('\n', ( scans[i].cufe.indexOf('cufeTotalFactura=')) + 'cufeTotalFactura='.length))
-                ),
+                'FECHA: ' + scans[i].fecha +'\n'+
+                'Valor: ' + scans[i].total.toString())
+                ,
               trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
               onTap: () {
                 launchInBrowser(context, scans[i]);

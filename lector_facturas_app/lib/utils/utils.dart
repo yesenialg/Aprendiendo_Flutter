@@ -3,7 +3,7 @@ import 'package:lector_facturas_app/models/scan_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 launchInBrowser(BuildContext context, ScanModel scan) async {
-  final cufe = scan.cufe;
+  final cufe = scan.doc;
   const start = "CUFE=";
   const end = "\n";
 
