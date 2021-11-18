@@ -23,6 +23,10 @@ class MyApp extends StatelessWidget {
             'home': (_) => HomePage(),
             'table': (_)=> TablePage(),
           },
+          theme: ThemeData(
+              primaryColor: Colors.indigo,
+              floatingActionButtonTheme: FloatingActionButtonThemeData(
+                  backgroundColor: Colors.indigo)),
         ));
   }
 }
