@@ -45,10 +45,6 @@ class _EnlacesPageState extends State<EnlacesPage> {
           if (response.isTapDenyButton) {
             scans = scanListProvider.scans;
             setState(() {});
-            ArtSweetAlert.show(
-                context: context,
-                artDialogArgs: ArtDialogArgs(
-                    type: ArtSweetAlertType.info, title: "Cancelado"));
             return;
           }
         },
