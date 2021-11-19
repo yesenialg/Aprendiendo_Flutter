@@ -38,6 +38,7 @@ dependencies:
   sweetalert: ^0.0.1
   art_sweetalert: ^0.0.5
   data_table_2: ^2.2.0
+  unicorndial: ^1.1.5
 
 dev_dependencies:
 

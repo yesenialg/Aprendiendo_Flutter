@@ -5,6 +5,7 @@ import 'package:lector_facturas_app/pages/table_enlaces.dart';
 import 'package:lector_facturas_app/providers/db_provider.dart';
 import 'package:lector_facturas_app/providers/scan_list_provider.dart';
 import 'package:lector_facturas_app/widgets/custom_navigatorbar.dart';
+import 'package:lector_facturas_app/widgets/filter_button.dart';
 import 'package:lector_facturas_app/widgets/history_button.dart';
 import 'package:lector_facturas_app/widgets/scan_button.dart';
 import 'package:provider/provider.dart';
@@ -18,17 +19,29 @@ class TablePage extends StatelessWidget {
         elevation: 0,
         title: Text("Table page"),
       ),
-      body:
-      EnlacesTable(),
-      
-
+            body: EnlacesTable()
+        
+      ,
+      floatingActionButton: ExpandableFab(
+        distance: 112.0,
+        children: [
+          ActionButton(
+            onPressed: () {},
+            icon: const Icon(Icons.calendar_today),
+          ),
+          ActionButton(
+            onPressed:() {},
+            icon: const Icon(Icons.cleaning_services),
+          ),
+        ],
+      ),
     );
   }
 }
 
 
 
-
+//EnlacesTable(),
 class _cargarScans extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
