@@ -39,6 +39,8 @@ dependencies:
   art_sweetalert: ^0.0.5
   data_table_2: ^2.2.0
   unicorndial: ^1.1.5
+  syncfusion_flutter_datepicker: ^19.3.54
+  http: ^0.13.4
 
 dev_dependencies:
 

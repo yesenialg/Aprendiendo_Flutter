@@ -16,25 +16,34 @@ class ScanButton extends StatelessWidget {
         if (barcodeScanRes != '-1') {
           final scanListProvider =
               Provider.of<ScanListProvider>(context, listen: false);
-          var doc = barcodeScanRes.toString();
-          if (doc.contains("CUFE")) {
-            final num_factura = getDataQR(doc, 'NroFactura=', '\n');
-            final establecimiento = getDataQR(doc, 'NitAdquiriente=', '\n');
-            final cufe = getDataQR(doc, 'CUFE=', '\n');
-            final fecha = getDataQR(doc, 'FechaFactura=', '\n');
-            //final total= double.parse(getDataQR(doc, 'ValorTotalFactura=', '\n')).round();
-            final nuevoScan = await scanListProvider.nuevoScan(
-                cufe, fecha, 65454, num_factura, doc, establecimiento);
-            print(doc);
-            //print(getDataQR(doc, 'ValorTotalFactura=', '\n'));
-            launchInBrowser(context, nuevoScan);
-          } else {
-            print('ESTE QR NO PERTENECE A LA DIAN');
-            return;
-          }
+          String doc = barcodeScanRes.toString();
+          
+          
+          print(doc);
+          var newString = 'resume';
+          var doc2= doc.replaceAll(':', '=');
+          print('EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO $doc2');
+          var doc3= doc2.replaceAll(' ', '');
+          print('EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO2 $doc3');
+          /*if (doc.contains("CUFE")) {*/
+          
+          /*final num_factura = getDataQR(doc3, 'NroFactura', '\n');
+          final establecimiento = getDataQR(doc3, 'NitAdquiriente', '\n');
+          final cufe = getDataQR(doc3, 'CUFE=', '\n');
+          final fecha = getDataQR(doc3, 'FechaFactura', '\n');
+          //final total= double.parse(getDataQR(doc, 'ValorTotalFactura=', '\n')).round();*/
+          final nuevoScan = await scanListProvider.nuevoScan(
+              "njkjnkj", "njkjnkj", 65454, "njkjnkj", doc3, "njkjnkj");
+          //print('FACTURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA $doc');
+          //print(getDataQR(doc, 'ValorTotalFactura=', '\n'));
+          //launchInBrowser(context, nuevoScan);
         } else {
+          print('ESTE QR NO PERTENECE A LA DIAN');
           return;
         }
+        /*} else {
+          return;
+        }*/
       },
       elevation: 0,
       child: Icon(Icons.filter_center_focus),

@@ -7,7 +7,7 @@ launchInBrowser(BuildContext context, ScanModel scan) async {
   const start = "CUFE=";
   const end = "\n";
 
-  if (cufe.contains(start)) {
+  /*if (cufe.contains(start)) {*/
     final startIndex = cufe.indexOf(start);
     final endIndex = cufe.indexOf(end, startIndex + start.length);
     final idcufe = cufe.substring(startIndex + start.length, endIndex);
@@ -20,7 +20,7 @@ launchInBrowser(BuildContext context, ScanModel scan) async {
     } else {
       throw 'Could not launch $url_dian';
     }
-  } else {
+  /*} else {
     print('ESTE QR NO PERTENECE A LA DIAN');
-  }
+  }*/
 }

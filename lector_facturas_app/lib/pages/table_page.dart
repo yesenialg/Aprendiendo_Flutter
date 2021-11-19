@@ -4,6 +4,7 @@ import 'package:lector_facturas_app/pages/historial_enlaces.dart';
 import 'package:lector_facturas_app/pages/table_enlaces.dart';
 import 'package:lector_facturas_app/providers/db_provider.dart';
 import 'package:lector_facturas_app/providers/scan_list_provider.dart';
+import 'package:lector_facturas_app/widgets/calendar.dart';
 import 'package:lector_facturas_app/widgets/custom_navigatorbar.dart';
 import 'package:lector_facturas_app/widgets/filter_button.dart';
 import 'package:lector_facturas_app/widgets/history_button.dart';
@@ -26,11 +27,11 @@ class TablePage extends StatelessWidget {
         distance: 112.0,
         children: [
           ActionButton(
-            onPressed: () {},
+            onPressed: () => _mostrarAlert(context),
             icon: const Icon(Icons.calendar_today),
           ),
           ActionButton(
-            onPressed:() {},
+            onPressed: () => _cargarScans(),
             icon: const Icon(Icons.cleaning_services),
           ),
         ],
@@ -38,6 +39,36 @@ class TablePage extends StatelessWidget {
     );
   }
 }
+
+  void _mostrarAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return AlertDialog(
+            shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(30.0)),
+            title: Text('Titulo'),
+            //content:Text('Contenido'),
+            content: Column(
+                //Evitar que la columna de la tarjeta se estire// se adapte al contenido interno
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Text('Este es el contenido de la caja de la tarjeta'),
+                  Calendar()
+                ]),
+            actions: <Widget>[
+              TextButton(
+                  child: Text('Cancelar'),
+                  onPressed: () => Navigator.of(context).pop()),
+              TextButton(
+                  child: Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ],
+          );
+        });
+  }
 
 
 
