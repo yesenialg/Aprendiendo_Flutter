@@ -34,8 +34,8 @@ class ScanButton extends StatelessWidget {
                 double.parse(getDataQR(doc, 'ValorTotalFactura=', '\n'))
                     .round();
             var scan = await equalQR(cufe, context);
+            // ignore: prefer_conditional_assignment
             if (scan == null) {
-              print("NO EXISTE scannnnnnnnnnnnnnnnnn");
               scan = await scanListProvider.nuevoScan(
                   cufe, fecha, total, num_factura, doc, establecimiento);
             }
