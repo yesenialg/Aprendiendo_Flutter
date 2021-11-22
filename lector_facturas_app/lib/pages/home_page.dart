@@ -8,6 +8,8 @@ import 'package:lector_facturas_app/widgets/history_button.dart';
 import 'package:lector_facturas_app/widgets/scan_button.dart';
 import 'package:provider/provider.dart';
 
+
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

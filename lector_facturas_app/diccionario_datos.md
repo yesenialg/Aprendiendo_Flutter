@@ -3,7 +3,8 @@
 Por el momento a continuación se presentan los datos globale
 
 **CUFE**
-    - CUFE
+    - CUFE: 
+    - CUFE=
 
 **NÚMERO DE FACTURA**
     - NumFac

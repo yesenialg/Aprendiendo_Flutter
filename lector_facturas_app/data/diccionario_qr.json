@@ -1,0 +1,47 @@
+{
+    "nombreApp": "LectorQR",
+    "variables": [{
+            "nombre": "Cufe",
+            "sintaxis": [
+                "CUFE"
+            ]
+        },
+
+        {
+            "nombre": "NumFactura",
+            "sintaxis": [
+                "NumFac",
+                "NroFactura"
+
+            ]
+        },
+        {
+            "nombre": "Fecha",
+            "sintaxis": [
+                "FecFac",
+                "FechaFactura"
+            ]
+        },
+        {
+            "nombre": "Total",
+            "sintaxis": [
+                "ValorTotalFactura",
+                "ValTolFac"
+            ]
+        },
+        {
+            "nombre": "Facturador",
+            "sintaxis": [
+                "NitFacturador",
+                "NitFac"
+            ]
+        },
+        {
+            "nombre": "Adquiriente",
+            "sintaxis": [
+                "DicAdq",
+                "NitAdquiriente"
+            ]
+        }
+    ]
+}
