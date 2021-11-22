@@ -18,7 +18,7 @@ class ScanModel {
   int id;
   String cufe;
   String fecha;
-  int total;
+  double total;
   String num_factura;
   String doc;
   String establecimiento;

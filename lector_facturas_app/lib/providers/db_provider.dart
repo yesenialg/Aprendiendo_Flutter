@@ -31,7 +31,7 @@ class DBProvider {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             cufe TEXT NOT NULL,
             fecha TEXT NOT NULL,
-            total INTEGER NOT NULL,
+            total DOUBLE NOT NULL,
             num_factura TEXT NOT NULL,
             establecimiento TEXT,
             doc TEXT

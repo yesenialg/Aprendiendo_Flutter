@@ -3,44 +3,79 @@
     "variables": [{
             "nombre": "Cufe",
             "sintaxis": [
-                "CUFE"
+                "CUFE=https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
+                "CUFE:https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
+                "CUFE=",
+                "CUFE:"
+                
             ]
         },
 
         {
             "nombre": "NumFactura",
             "sintaxis": [
-                "NumFac",
-                "NroFactura"
+                "NumFac= ",
+                "NroFactura= ",
+                "NumFac: ",
+                "NroFactura: ",
+                "NumFac=",
+                "NroFactura=",
+                "NumFac:",
+                "NroFactura:"
 
             ]
         },
         {
             "nombre": "Fecha",
             "sintaxis": [
-                "FecFac",
-                "FechaFactura"
+                "FecFac= " ,
+                "FechaFactura= ",
+                "FecFac: ",
+                "FechaFactura: ",
+                "FecFac=",
+                "FechaFactura=",
+                "FecFac:",
+                "FechaFactura:"
+                
             ]
         },
         {
             "nombre": "Total",
             "sintaxis": [
-                "ValorTotalFactura",
-                "ValTolFac"
+                "ValorTotalFactura= ",
+                "ValTolFac= ",
+                "ValorTotalFactura: ",
+                "ValTolFac: ",
+                "ValorTotalFactura=",
+                "ValTolFac=",
+                "ValorTotalFactura:",
+                "ValTolFac:"
             ]
         },
         {
             "nombre": "Facturador",
             "sintaxis": [
-                "NitFacturador",
-                "NitFac"
+                "NitFacturador:",
+                "NitFacturador=",
+                "NitFac=",
+                "NitFac:",
+                "NitFacturador: ",
+                "NitFacturador= ",
+                "NitFac= ",
+                "NitFac: "
             ]
         },
         {
             "nombre": "Adquiriente",
             "sintaxis": [
-                "DicAdq",
-                "NitAdquiriente"
+                "DicAdq=",
+                "NitAdquiriente=",
+                "DicAdq:",
+                "NitAdquiriente:",
+                "DicAdq= ",
+                "NitAdquiriente= ",
+                "DicAdq: ",
+                "NitAdquiriente: "
             ]
         }
     ]
