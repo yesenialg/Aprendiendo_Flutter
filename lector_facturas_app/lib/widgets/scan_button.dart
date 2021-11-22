@@ -82,6 +82,7 @@ class ScanButton extends StatelessWidget {
         Provider.of<ScanListProvider>(context, listen: false);
     Future? exis = await scanListProvider.getScanByCufe(cufe);
     List existente = scanListProvider.scans;
+    await scanListProvider.cargarScans();
     if (!existente.isEmpty) {
       return existente[0];
     } else {
