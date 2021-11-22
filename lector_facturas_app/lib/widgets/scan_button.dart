@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:lector_facturas_app/models/scan_model.dart';
 import 'package:lector_facturas_app/providers/scan_list_provider.dart';
 import 'package:lector_facturas_app/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -17,37 +18,52 @@ class ScanButton extends StatelessWidget {
           final scanListProvider =
               Provider.of<ScanListProvider>(context, listen: false);
           String doc = barcodeScanRes.toString();
-          
-          
-          print(doc);
+
           var newString = 'resume';
-          var doc2= doc.replaceAll(':', '=');
-          print('EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO $doc2');
-          var doc3= doc2.replaceAll(' ', '');
-          print('EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO2 $doc3');
-          /*if (doc.contains("CUFE")) {*/
-          
-          /*final num_factura = getDataQR(doc3, 'NroFactura', '\n');
-          final establecimiento = getDataQR(doc3, 'NitAdquiriente', '\n');
-          final cufe = getDataQR(doc3, 'CUFE=', '\n');
-          final fecha = getDataQR(doc3, 'FechaFactura', '\n');
-          //final total= double.parse(getDataQR(doc, 'ValorTotalFactura=', '\n')).round();*/
-          final nuevoScan = await scanListProvider.nuevoScan(
-              "njkjnkj", "njkjnkj", 65454, "njkjnkj", doc3, "njkjnkj");
-          //print('FACTURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA $doc');
-          //print(getDataQR(doc, 'ValorTotalFactura=', '\n'));
-          //launchInBrowser(context, nuevoScan);
+          var doc2 = doc.replaceAll(':', '=');
+          // print('EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO $doc2');
+          var doc3 = doc2.replaceAll(' ', '');
+          // print('EJEMPLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO2 $doc3');
+          if (doc.contains("CUFE")) {
+            final num_factura = getDataQR(doc3, 'NroFactura', '\n');
+            final establecimiento = getDataQR(doc3, 'NitAdquiriente', '\n');
+            final cufe = getDataQR(doc3, 'CUFE=', '\n');
+            final fecha = getDataQR(doc3, 'FechaFactura', '\n');
+            final total =
+                double.parse(getDataQR(doc, 'ValorTotalFactura=', '\n'))
+                    .round();
+            var scan = await equalQR(cufe, context);
+            if (scan == null) {
+              print("NO EXISTE scannnnnnnnnnnnnnnnnn");
+              scan = await scanListProvider.nuevoScan(
+                  cufe, fecha, total, num_factura, doc, establecimiento);
+            }
+            launchInBrowser(context, scan);
+            // print('FACTURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA $doc');
+            // print(getDataQR(doc, 'ValorTotalFactura=', '\n'));
+          } else {
+            print('ESTE QR NO PERTENECE A LA DIAN');
+            return;
+          }
         } else {
-          print('ESTE QR NO PERTENECE A LA DIAN');
           return;
         }
-        /*} else {
-          return;
-        }*/
       },
       elevation: 0,
       child: Icon(Icons.filter_center_focus),
     );
+  }
+
+  Future<ScanModel?> equalQR(String cufe, BuildContext context) async {
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
+    Future? exis = await scanListProvider.getScanByCufe(cufe);
+    List existente = scanListProvider.scans;
+    if (!existente.isEmpty) {
+      return existente[0];
+    } else {
+      return null;
+    }
   }
 
   String getDataQR(String str, String start, String end) {

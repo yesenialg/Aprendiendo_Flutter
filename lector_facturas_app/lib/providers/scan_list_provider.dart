@@ -21,6 +21,12 @@ class ScanListProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+  getScanByCufe(String cufe) async {
+    final Scans = await DBProvider.db.getScanByCufe(cufe);
+    this.scans = [...Scans];
+    notifyListeners();
+  }
+
   borrarScans() async {
     await DBProvider.db.deleteAllScans();
     this.scans = [];
