@@ -1,3 +1,4 @@
+import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:lector_facturas_app/models/scan_model.dart';
@@ -42,7 +43,10 @@ class ScanButton extends StatelessWidget {
             // print('FACTURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA $doc');
             // print(getDataQR(doc, 'ValorTotalFactura=', '\n'));
           } else {
-            print('ESTE QR NO PERTENECE A LA DIAN');
+            ArtSweetAlert.show(
+                    context: context,
+                    artDialogArgs: ArtDialogArgs(
+                        type: ArtSweetAlertType.danger, title: "ESTE QR NO PERTENECE A LA DIAN"));
             return;
           }
         } else {
