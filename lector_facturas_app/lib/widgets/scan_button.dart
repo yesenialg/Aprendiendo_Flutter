@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ScanButton extends StatelessWidget {
-  
   List<dynamic> json = [];
   List<String> variables_qr = [];
   @override
@@ -17,59 +16,70 @@ class ScanButton extends StatelessWidget {
     return FloatingActionButton(
       heroTag: "scan",
       onPressed: () async {
-        String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-            '#3D8BEF', 'Cancelar', false, ScanMode.QR);
+        try {
+          String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+              '#3D8BEF', 'Cancelar', false, ScanMode.QR);
 
-        if (barcodeScanRes != '-1') {
-          final scanListProvider =
-              Provider.of<ScanListProvider>(context, listen: false);
-          String doc = barcodeScanRes.toString();
+          if (barcodeScanRes != '-1') {
+            final scanListProvider =
+                Provider.of<ScanListProvider>(context, listen: false);
+            String doc = barcodeScanRes.toString();
 
-          var newString = 'resume';
-          var doc2 = doc.replaceAll(':', '=');
-          var doc3 = doc2.replaceAll(' ', '');
-          if (doc.contains("CUFE")) {
-             for (int i = 0; i < 6; i++) {
-            json.add(await variablesQrProvider.cargarData(i));
-          }
-
-          for (int i = 0; i < json.length; i++) {
-            for (int j = 0; j < json[i].length; j++) {
-              if (doc.contains(json[i][j])) {
-                variables_qr.add(json[i][j]);
+            var newString = 'resume';
+            var doc2 = doc.replaceAll(':', '=');
+            var doc3 = doc2.replaceAll(' ', '');
+            if (doc.contains("CUFE")) {
+              for (int i = 0; i < 6; i++) {
+                json.add(await variablesQrProvider.cargarData(i));
               }
-            }
-          }
 
-          for (int i = 0; i < variables_qr.length; i++) {
-            print(variables_qr[i]);
-          }
+              for (int i = 0; i < json.length; i++) {
+                for (int j = 0; j < json[i].length; j++) {
+                  if (doc.contains(json[i][j])) {
+                    variables_qr.add(json[i][j]);
+                  }
+                }
+              }
 
-            final cufe = getDataQR(doc3, variables_qr[0]+'=', '\n');
-            final num_factura = getDataQR(doc3, variables_qr[1]+'=', '\n');
-            final fecha = getDataQR(doc3, variables_qr[2]+'=', '\n');
-            final total =
-                double.parse(getDataQR(doc3, variables_qr[3]+'=', '\n'))
-                    .round();
-            final establecimiento = getDataQR(doc3, variables_qr[4]+'=', '\n');
-            //final adquiriente=getDataQR(doc3, variables_qr[5]+'=', '\n');
-            var scan = await equalQR(cufe, context);
-            // ignore: prefer_conditional_assignment
-            if (scan == null) {
-              scan = await scanListProvider.nuevoScan(
-                  cufe, fecha, total, num_factura, doc, establecimiento);
+              for (int i = 0; i < variables_qr.length; i++) {
+                print(variables_qr[i]);
+              }
+
+              final cufe = getDataQR(doc3, variables_qr[0] + '=', '\n');
+              final num_factura = getDataQR(doc3, variables_qr[1] + '=', '\n');
+              final fecha = getDataQR(doc3, variables_qr[2] + '=', '\n');
+              final total =
+                  double.parse(getDataQR(doc3, variables_qr[3] + '=', '\n'))
+                      .round();
+              final establecimiento =
+                  getDataQR(doc3, variables_qr[4] + '=', '\n');
+              //final adquiriente=getDataQR(doc3, variables_qr[5]+'=', '\n');
+              var scan = await equalQR(cufe, context);
+              // ignore: prefer_conditional_assignment
+              if (scan == null) {
+                scan = await scanListProvider.nuevoScan(
+                    cufe, fecha, total, num_factura, doc, establecimiento);
+              }
+              final url_dian =
+                  'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$cufe';
+              await launch(url_dian);
+            } else {
+              ArtSweetAlert.show(
+                  context: context,
+                  artDialogArgs: ArtDialogArgs(
+                      type: ArtSweetAlertType.danger,
+                      title: "Este QR no pertenece a la DIAN"));
+              return;
             }
-            final url_dian='https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$cufe';
-            await launch(url_dian);
           } else {
-            ArtSweetAlert.show(
-                    context: context,
-                    artDialogArgs: ArtDialogArgs(
-                        type: ArtSweetAlertType.danger, title: "ESTE QR NO PERTENECE A LA DIAN"));
             return;
           }
-        } else {
-          return;
+        } catch (e) {
+          ArtSweetAlert.show(
+                  context: context,
+                  artDialogArgs: ArtDialogArgs(
+                      type: ArtSweetAlertType.danger,
+                      title: "No se pudo leer el QR, intentelo de nuevo"));
         }
       },
       elevation: 0,
