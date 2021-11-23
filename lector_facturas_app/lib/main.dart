@@ -21,13 +21,12 @@ class MyApp extends StatelessWidget {
           initialRoute: 'home',
           routes: {
             'home': (_) => HomePage(),
-            'table': (_)=> TablePage(),
+            'table': (_) => TablePage(),
           },
           theme: ThemeData(
               primaryColor: Colors.indigo,
               floatingActionButtonTheme: FloatingActionButtonThemeData(
-                  backgroundColor: Colors.indigo)
-              ),
+                  backgroundColor: Colors.indigo)),
         ));
   }
 }

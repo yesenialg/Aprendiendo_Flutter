@@ -12,67 +12,151 @@ class EnlacesTable extends StatefulWidget {
 }
 
 class _EnlacesTableState extends State<EnlacesTable> {
+  int _currentSortColumn = 0;
+  bool _isAscending = true;
+  late ScanListProvider scanListProvider;
+  late List _scans;
   @override
   Widget build(BuildContext context) {
-    ScanListProvider scanListProvider = Provider.of<ScanListProvider>(context);
-    List scans = scanListProvider.scans;
-    var sc = <ScanModel>[];
+    scanListProvider = Provider.of<ScanListProvider>(context);
+    _scans = scanListProvider.scans;
+    //var sc = <ScanModel>[];
 
-    var _chosenSubCounty = 'Mvita';
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Container(
+      width: double.infinity,
       child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
+        scrollDirection: Axis.horizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: DataTable(
+              sortColumnIndex: _currentSortColumn,
+              sortAscending: _isAscending,
+              headingRowColor: MaterialStateProperty.all(Colors.cyan[50]),
 
-            
-           
-      
-            DataTable(
-                sortColumnIndex: 1,
-                columnSpacing: 35.0,
-                horizontalMargin: 12,
-                //minWidth: 600,
-                columns: _HeaderTable,
-                rows: scans
-                    .map((factura) => DataRow(cells: [
-                          DataCell(Text(factura.id.toString())),
-                          DataCell(Text(factura.fecha)),
-                          DataCell(Text(factura.total.toString())),
-                          DataCell(Text(factura.num_factura)),
-                          DataCell(Text(factura.establecimiento)),
-                        ]))
-                    .toList()),
-            
-            
-                   
-          ],
+              //minWidth: 600,
+              columns: [
+                DataColumn(
+                  label: Text(
+                    'ID',style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold)
+                  ),
+                  numeric:true,
+                  onSort: (columnIndex, _) {
+                      setState(() {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending) {
+                          _isAscending = false;
+                          _scans.sort(
+                              (a, b) => a.id.compareTo(b.id));
+                        } else {
+                          _isAscending = true;
+                          _scans.sort(
+                              (a, b) => b.id.compareTo(a.id));
+                        }
+                      });
+                    }
+                ),
+                DataColumn(
+                  label: Text('FECHA',style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                  onSort: (columnIndex, _) {
+                      setState(() {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending) {
+                          _isAscending = false;
+                          _scans.sort(
+                              (a, b) => a.fecha.compareTo(b.fecha));
+                        } else {
+                          _isAscending = true;
+                          _scans.sort(
+                              (a, b) => b.fecha.compareTo(a.fecha));
+                        }
+                      });
+                    }
+                ),
+                DataColumn(
+                  label: Text('TOTAL',style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                  numeric: true,
+                  onSort: (columnIndex, _) {
+                      setState(() {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending) {
+                          _isAscending = false;
+                          _scans.sort(
+                              (a, b) => a.total.compareTo(b.total));
+                        } else {
+                          _isAscending = true;
+                          _scans.sort(
+                              (a, b) => b.total.compareTo(a.total));
+                        }
+                      });
+                    }
+                ),
+                DataColumn(
+                    label: Text('FACTURA',
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                    onSort: (columnIndex, _) {
+                      setState(() {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending) {
+                          _isAscending = false;
+                          _scans.sort(
+                              (a, b) => a.num_factura.compareTo(b.num_factura));
+                        } else {
+                          _isAscending = true;
+                          _scans.sort(
+                              (a, b) => b.num_factura.compareTo(a.num_factura));
+                        }
+                      });
+                    }),
+                DataColumn(
+                  label: Text('ESTABLECIMIENTO',style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            onSort: (columnIndex, _) {
+                      setState(() {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending) {
+                          _isAscending = false;
+                          _scans.sort(
+                              (a, b) => a.establecimiento.compareTo(b.establecimiento));
+                        } else {
+                          _isAscending = true;
+                          _scans.sort(
+                              (a, b) => b.establecimiento.compareTo(a.establecimiento));
+                        }
+                      });
+                    }
+                ),
+              ],
+              rows: _scans
+                  .map((factura) =>
+                      DataRow(selected: _scans.contains(factura), cells: [
+                        DataCell(
+                          Text(factura.id.toString()),
+                          onTap: () {
+                            // write your code..
+                          },
+                        ),
+                        DataCell(Text(factura.fecha)),
+                        DataCell(Text(factura.total.toString())),
+                        DataCell(Text(factura.num_factura)),
+                        DataCell(Text(factura.establecimiento)),
+                      ]))
+                  .toList()),
         ),
       ),
     );
   }
 
-  List<DataColumn> get _HeaderTable {
-    return [
-      DataColumn(
-        label: Text('ID'),
-      ),
-      DataColumn(
-        label: Text('FECHA'),
-      ),
-      DataColumn(
-        label: Text('TOTAL'),
-      ),
-      DataColumn(
-        label: Text('FACTURA'),
-      ),
-      DataColumn(
-        label: Text('ESTABLECIMIENTO'),
-        numeric: true,
-      ),
-    ];
+  onSortColum() {
+    if (_isAscending) {
+      _isAscending = false;
+      _scans.sort((a, b) => a.num_factura.compareTo(b.num_factura));
+    } else {
+      _isAscending = true;
+      _scans.sort((a, b) => b.num_factura.compareTo(a.num_factura));
+    }
   }
-
-
 }
