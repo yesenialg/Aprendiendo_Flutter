@@ -4,6 +4,7 @@ import 'package:lector_facturas_app/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EnlacesPage extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _EnlacesPageState extends State<EnlacesPage> {
 Widget _buildScanModelList(BuildContext context, List scans, int i) {
   final GlobalKey<ExpansionTileCardState> cardA = GlobalKey();
   return Padding(
-   padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+    padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
     child: ExpansionTileCard(
       key: cardA,
       baseColor: Colors.cyan[50],
@@ -82,7 +83,8 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
                 '\n' +
                 'CUFE: ' +
                 scans[i].cufe,
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
+            style:
+                Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 16),
           ),
         ),
         ButtonBar(
@@ -109,8 +111,10 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
             FlatButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0)),
-              onPressed: () {
-                launchInBrowser(context, scans[i]);
+              onPressed: () async {
+                final url_dian =
+                    'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/${scans[i].cufe}';
+                await launch(url_dian);
               },
               child: Column(
                 children: <Widget>[
