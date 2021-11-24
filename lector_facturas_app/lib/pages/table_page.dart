@@ -19,6 +19,11 @@ class TablePageState extends State<TablePage> {
   String _range = '';
   String _start = '';
   String _end = '';
+  String _opcionSeleccionada = 'Factura';
+  List<String> _tipoQR = [
+    'Factura',
+    'Nota credito',
+  ];
 
   @override
   void initState() {
@@ -34,19 +39,17 @@ class TablePageState extends State<TablePage> {
         elevation: 0,
         title: Text("Tabla"),
       ),
-      body: EnlacesTable(),
+      body: _cargarScans(),
       floatingActionButton: ExpandableFab(
         distance: 112.0,
         children: [
           ActionButton(
-            onPressed: () => mostrarAlert(context),
+            onPressed: () => mostrarCalendario(context),
             icon: const Icon(Icons.calendar_today),
             //label: 'Fecha',
           ),
           ActionButton(
-            onPressed: () => {
-              
-            },
+            onPressed: () => mostrarTipos(context),
             //label: 'Tipo QR',
             icon: const Icon(Icons.merge_type),
           ),
@@ -60,7 +63,71 @@ class TablePageState extends State<TablePage> {
     );
   }
 
-  void mostrarAlert(BuildContext context) {
+  List<DropdownMenuItem<String>> getOpcionesDropdown() {
+    List<DropdownMenuItem<String>> lista = [];
+
+    _tipoQR.forEach((tipo) {
+      lista.add(DropdownMenuItem(child: Text(tipo), value: tipo));
+    });
+
+    return lista;
+  }
+
+  void mostrarTipos(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return AlertDialog(
+              insetPadding: EdgeInsets.symmetric(horizontal: 20),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        'Filtar por tipo de QR',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                    SizedBox(height: 15.0),
+                    Container(
+                      child: Container(
+                          child: Positioned(
+                        left: 0,
+                        top: 80,
+                        right: 0,
+                        bottom: 0,
+                        child: DropdownButton(
+                            value: _opcionSeleccionada,
+                            items: getOpcionesDropdown(),
+                            onChanged: (opt) {
+                              //print(opt);
+                              setState(() {
+                                _opcionSeleccionada = opt.toString();
+                              });
+                            }),
+                      )),
+                    ),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                    child: Text('Cancelar'),
+                    onPressed: () => Navigator.of(context).pop()),
+                TextButton(
+                    child: Text('Filtrar'),
+                    onPressed: () {
+                      //print(EnlacesTable().scansFiltered[0]);
+                    }),
+              ]);
+          ;
+        });
+  }
+
+  void mostrarCalendario(BuildContext context) {
     showDialog(
         context: context,
         barrierDismissible: true,

@@ -16,6 +16,7 @@ class _EnlacesTableState extends State<EnlacesTable> {
   bool _isAscending = true;
   late ScanListProvider scanListProvider;
   late List _scans;
+  List scansFiltered = [];
   @override
   Widget build(BuildContext context) {
     scanListProvider = Provider.of<ScanListProvider>(context);
@@ -37,63 +38,55 @@ class _EnlacesTableState extends State<EnlacesTable> {
               //minWidth: 600,
               columns: [
                 DataColumn(
-                  label: Text(
-                    'ID',style: TextStyle(
-                            color: Colors.indigo, fontWeight: FontWeight.bold)
-                  ),
-                  numeric:true,
-                  onSort: (columnIndex, _) {
-                      setState(() {
-                        _currentSortColumn = columnIndex;
-                        if (_isAscending) {
-                          _isAscending = false;
-                          _scans.sort(
-                              (a, b) => a.id.compareTo(b.id));
-                        } else {
-                          _isAscending = true;
-                          _scans.sort(
-                              (a, b) => b.id.compareTo(a.id));
-                        }
-                      });
-                    }
-                ),
-                DataColumn(
-                  label: Text('FECHA',style: TextStyle(
+                    label: Text('ID',
+                        style: TextStyle(
                             color: Colors.indigo, fontWeight: FontWeight.bold)),
-                  onSort: (columnIndex, _) {
+                    numeric: true,
+                    onSort: (columnIndex, _) {
                       setState(() {
                         _currentSortColumn = columnIndex;
                         if (_isAscending) {
                           _isAscending = false;
-                          _scans.sort(
-                              (a, b) => a.fecha.compareTo(b.fecha));
+                          _scans.sort((a, b) => a.id.compareTo(b.id));
                         } else {
                           _isAscending = true;
-                          _scans.sort(
-                              (a, b) => b.fecha.compareTo(a.fecha));
+                          _scans.sort((a, b) => b.id.compareTo(a.id));
                         }
                       });
-                    }
-                ),
+                    }),
                 DataColumn(
-                  label: Text('TOTAL',style: TextStyle(
+                    label: Text('FECHA',
+                        style: TextStyle(
                             color: Colors.indigo, fontWeight: FontWeight.bold)),
-                  numeric: true,
-                  onSort: (columnIndex, _) {
+                    onSort: (columnIndex, _) {
                       setState(() {
                         _currentSortColumn = columnIndex;
                         if (_isAscending) {
                           _isAscending = false;
-                          _scans.sort(
-                              (a, b) => a.total.compareTo(b.total));
+                          _scans.sort((a, b) => a.fecha.compareTo(b.fecha));
                         } else {
                           _isAscending = true;
-                          _scans.sort(
-                              (a, b) => b.total.compareTo(a.total));
+                          _scans.sort((a, b) => b.fecha.compareTo(a.fecha));
                         }
                       });
-                    }
-                ),
+                    }),
+                DataColumn(
+                    label: Text('TOTAL',
+                        style: TextStyle(
+                            color: Colors.indigo, fontWeight: FontWeight.bold)),
+                    numeric: true,
+                    onSort: (columnIndex, _) {
+                      setState(() {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending) {
+                          _isAscending = false;
+                          _scans.sort((a, b) => a.total.compareTo(b.total));
+                        } else {
+                          _isAscending = true;
+                          _scans.sort((a, b) => b.total.compareTo(a.total));
+                        }
+                      });
+                    }),
                 DataColumn(
                     label: Text('FACTURA',
                         style: TextStyle(
@@ -113,23 +106,23 @@ class _EnlacesTableState extends State<EnlacesTable> {
                       });
                     }),
                 DataColumn(
-                  label: Text('ESTABLECIMIENTO',style: TextStyle(
+                    label: Text('ESTABLECIMIENTO',
+                        style: TextStyle(
                             color: Colors.indigo, fontWeight: FontWeight.bold)),
-                            onSort: (columnIndex, _) {
+                    onSort: (columnIndex, _) {
                       setState(() {
                         _currentSortColumn = columnIndex;
                         if (_isAscending) {
                           _isAscending = false;
-                          _scans.sort(
-                              (a, b) => a.establecimiento.compareTo(b.establecimiento));
+                          _scans.sort((a, b) =>
+                              a.establecimiento.compareTo(b.establecimiento));
                         } else {
                           _isAscending = true;
-                          _scans.sort(
-                              (a, b) => b.establecimiento.compareTo(a.establecimiento));
+                          _scans.sort((a, b) =>
+                              b.establecimiento.compareTo(a.establecimiento));
                         }
                       });
-                    }
-                ),
+                    }),
                 DataColumn(
                     label: Text('TIPO',
                         style: TextStyle(
@@ -139,12 +132,10 @@ class _EnlacesTableState extends State<EnlacesTable> {
                         _currentSortColumn = columnIndex;
                         if (_isAscending) {
                           _isAscending = false;
-                          _scans.sort(
-                              (a, b) => a.tipo.compareTo(b.tipo));
+                          _scans.sort((a, b) => a.tipo.compareTo(b.tipo));
                         } else {
                           _isAscending = true;
-                          _scans.sort(
-                              (a, b) => b.tipo.compareTo(a.tipo));
+                          _scans.sort((a, b) => b.tipo.compareTo(a.tipo));
                         }
                       });
                     }),
@@ -170,13 +161,11 @@ class _EnlacesTableState extends State<EnlacesTable> {
     );
   }
 
-  onSortColum() {
-    if (_isAscending) {
-      _isAscending = false;
-      _scans.sort((a, b) => a.num_factura.compareTo(b.num_factura));
-    } else {
-      _isAscending = true;
-      _scans.sort((a, b) => b.num_factura.compareTo(a.num_factura));
+  onSortColum(String variable) {
+    scansFiltered =
+        _scans.where((scan) => scan.tipo.contains(variable)).toList();
+    for (var i = 0; i < scansFiltered.length; i++) {
+      print(scansFiltered[i]);
     }
   }
 }

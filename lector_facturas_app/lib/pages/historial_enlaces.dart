@@ -59,7 +59,7 @@ class _EnlacesPageState extends State<EnlacesPage> {
 Widget _buildScanModelList(BuildContext context, List scans, int i) {
   final GlobalKey<ExpansionTileCardState> cardA = GlobalKey();
   String tipo = 'CUFE';
-  
+  if(scans[i].tipo!='Factura'){ tipo='CUDE';}
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
     child: ExpansionTileCard(
