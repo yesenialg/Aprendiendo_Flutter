@@ -34,6 +34,7 @@ class DBProvider {
             total DOUBLE NOT NULL,
             num_factura TEXT NOT NULL,
             establecimiento TEXT,
+            tipo TEXT,
             doc TEXT
           )
         ''');
@@ -47,12 +48,13 @@ class DBProvider {
     final num_factura = nuevoScan.num_factura;
     final doc = nuevoScan.doc;
     final establecimiento = nuevoScan.establecimiento;
+    final tipo= nuevoScan.tipo;
 
     final db = await database;
 
     final res = await db.rawInsert('''
-      INSERT INTO Scans(cufe, fecha, total, num_factura, establecimiento, doc)
-      VALUES ('$cufe', '$fecha', '$total', '$num_factura', '$establecimiento', '$doc')
+      INSERT INTO Scans(cufe, fecha, total, num_factura, establecimiento,tipo, doc)
+      VALUES ('$cufe', '$fecha', '$total', '$num_factura', '$establecimiento', '$tipo','$doc')
     ''');
 
     return res;

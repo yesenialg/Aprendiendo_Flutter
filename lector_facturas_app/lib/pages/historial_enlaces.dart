@@ -95,9 +95,8 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
           buttonHeight: 52.0,
           buttonMinWidth: 90.0,
           children: <Widget>[
-            FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0)),
+            TextButton(
+              
               onPressed: () {
                 cardA.currentState?.collapse();
               },
@@ -114,9 +113,7 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
                 ],
               ),
             ),
-            FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0)),
+            TextButton(
               onPressed: () async {
                 final url_dian =
                     'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/${scans[i].cufe}';

@@ -25,8 +25,10 @@ class ScanButton extends StatelessWidget {
                 Provider.of<ScanListProvider>(context, listen: false);
             String doc = barcodeScanRes.toString();
 
-            if (doc.contains("CUFE")) {
-              var cufe = await separarDatos(doc, scanListProvider, context);
+            if (doc.contains("CUFE") || doc.contains("CUDE")) {
+              String tipo='';
+              doc.contains("CUFE")? tipo='Factura': tipo='Nota credito';
+              var cufe = await separarDatos(doc, scanListProvider, context,tipo);
               final url_dian =
                   'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$cufe';
               await launch(url_dian);
@@ -76,7 +78,7 @@ class ScanButton extends StatelessWidget {
     return (variable.replaceAll(" ", ""));
   }
 
-  Future<String?> separarDatos(doc, scanListProvider, context) async {
+  Future<String?> separarDatos(doc, scanListProvider, context,tipo) async {
     int enter = 0;
 
     doc.runes.forEach((int rune) {
@@ -119,7 +121,7 @@ class ScanButton extends StatelessWidget {
 
     if (scan == null) {
       scan = await scanListProvider.nuevoScan(
-          cufe, fecha, double.parse(total), num_factura, doc, establecimiento);
+          cufe, fecha, double.parse(total), num_factura, doc, establecimiento,tipo);
     }
 
     return cufe;

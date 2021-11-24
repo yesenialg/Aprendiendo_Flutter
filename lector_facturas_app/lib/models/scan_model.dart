@@ -13,6 +13,8 @@ class ScanModel {
     this.num_factura = '',
     this.doc = '',
     this.establecimiento = '',
+    this.tipo= '',
+
   });
 
   int id;
@@ -22,6 +24,7 @@ class ScanModel {
   String num_factura;
   String doc;
   String establecimiento;
+  String tipo;
 
   factory ScanModel.fromJson(Map<String, dynamic> json) => ScanModel(
         id: json["id"],
@@ -31,6 +34,7 @@ class ScanModel {
         num_factura: json["num_factura"],
         doc: json["doc"],
         establecimiento: json["establecimiento"],
+        tipo: json["tipo"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -40,6 +44,7 @@ class ScanModel {
         "total": total,
         "num_factura": num_factura,
         "doc": doc,
-        "establecimiento": establecimiento
+        "establecimiento": establecimiento,
+        "tipo":tipo
       };
 }

@@ -130,6 +130,24 @@ class _EnlacesTableState extends State<EnlacesTable> {
                       });
                     }
                 ),
+                DataColumn(
+                    label: Text('TIPO',
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                    onSort: (columnIndex, _) {
+                      setState(() {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending) {
+                          _isAscending = false;
+                          _scans.sort(
+                              (a, b) => a.tipo.compareTo(b.tipo));
+                        } else {
+                          _isAscending = true;
+                          _scans.sort(
+                              (a, b) => b.tipo.compareTo(a.tipo));
+                        }
+                      });
+                    }),
               ],
               rows: _scans
                   .map((factura) =>
@@ -144,6 +162,7 @@ class _EnlacesTableState extends State<EnlacesTable> {
                         DataCell(Text(factura.total.toString())),
                         DataCell(Text(factura.num_factura)),
                         DataCell(Text(factura.establecimiento)),
+                        DataCell(Text(factura.tipo)),
                       ]))
                   .toList()),
         ),

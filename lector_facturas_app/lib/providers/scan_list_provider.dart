@@ -5,14 +5,15 @@ class ScanListProvider extends ChangeNotifier {
   List<ScanModel> scans = [];
 
   Future<ScanModel> nuevoScan(String cufe, String fecha, double total,
-      String numFactura, String doc, String establecimiento) async {
+      String numFactura, String doc, String establecimiento,String tipo) async {
     final nuevoScan = new ScanModel(
         cufe: cufe,
         fecha: fecha,
         total: total,
         num_factura: numFactura,
         doc: doc,
-        establecimiento: establecimiento);
+        establecimiento: establecimiento,
+        tipo: tipo);
     final id = await DBProvider.db.nuevoScanRaw(nuevoScan);
     nuevoScan.id = id;
 
