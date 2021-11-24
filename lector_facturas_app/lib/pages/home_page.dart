@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         elevation: 0,
-        title: Text("Home page"),
+        title: Text("Home"),
         actions: [
           IconButton(
             onPressed: () async {

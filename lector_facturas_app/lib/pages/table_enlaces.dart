@@ -31,14 +31,15 @@ class _EnlacesTableState extends State<EnlacesTable> {
           child: DataTable(
               sortColumnIndex: _currentSortColumn,
               sortAscending: _isAscending,
-              headingRowColor: MaterialStateProperty.all(Colors.cyan[50]),
+              dataRowColor: MaterialStateProperty.all(Colors.indigo[50]),
+              headingRowColor: MaterialStateProperty.all(Colors.indigo[100]),
 
               //minWidth: 600,
               columns: [
                 DataColumn(
                   label: Text(
                     'ID',style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)
+                            color: Colors.indigo, fontWeight: FontWeight.bold)
                   ),
                   numeric:true,
                   onSort: (columnIndex, _) {
@@ -58,7 +59,7 @@ class _EnlacesTableState extends State<EnlacesTable> {
                 ),
                 DataColumn(
                   label: Text('FECHA',style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Colors.indigo, fontWeight: FontWeight.bold)),
                   onSort: (columnIndex, _) {
                       setState(() {
                         _currentSortColumn = columnIndex;
@@ -76,7 +77,7 @@ class _EnlacesTableState extends State<EnlacesTable> {
                 ),
                 DataColumn(
                   label: Text('TOTAL',style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Colors.indigo, fontWeight: FontWeight.bold)),
                   numeric: true,
                   onSort: (columnIndex, _) {
                       setState(() {
@@ -96,7 +97,7 @@ class _EnlacesTableState extends State<EnlacesTable> {
                 DataColumn(
                     label: Text('FACTURA',
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Colors.indigo, fontWeight: FontWeight.bold)),
                     onSort: (columnIndex, _) {
                       setState(() {
                         _currentSortColumn = columnIndex;
@@ -113,7 +114,7 @@ class _EnlacesTableState extends State<EnlacesTable> {
                     }),
                 DataColumn(
                   label: Text('ESTABLECIMIENTO',style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Colors.indigo, fontWeight: FontWeight.bold)),
                             onSort: (columnIndex, _) {
                       setState(() {
                         _currentSortColumn = columnIndex;

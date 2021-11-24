@@ -17,8 +17,9 @@ class TablePage extends StatelessWidget {
     
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
         elevation: 0,
-        title: Text("Table page"),
+        title: Text("Tabla"),
       ),
             body: EnlacesTable()
         
@@ -26,13 +27,17 @@ class TablePage extends StatelessWidget {
       floatingActionButton: ExpandableFab(
         distance: 112.0,
         children: [
-          ActionButton(
+          FloatingActionButton(
             onPressed: () => _mostrarAlert(context),
-            icon: const Icon(Icons.calendar_today),
+            child: Icon(Icons.calendar_today),
+            backgroundColor: Colors.indigo
+            // icon: const Icon(Icons.calendar_today),
           ),
-          ActionButton(
-            onPressed: () => _cargarScans(),
-            icon: const Icon(Icons.cleaning_services),
+          FloatingActionButton(
+            onPressed: () => _mostrarAlert(context),
+            child: Icon(Icons.cleaning_services),
+            backgroundColor: Colors.indigo
+            // icon: const Icon(Icons.calendar_today),
           ),
         ],
       ),

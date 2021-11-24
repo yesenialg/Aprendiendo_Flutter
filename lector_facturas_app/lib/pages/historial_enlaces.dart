@@ -62,9 +62,12 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
     child: ExpansionTileCard(
       key: cardA,
-      baseColor: Colors.cyan[50],
-      expandedColor: Color.fromRGBO(247, 237, 255, 1.0),
-      leading: CircleAvatar(child: Icon(Icons.payment_outlined)),
+      baseColor: Colors.indigo[50],
+      expandedColor: Colors.indigo[50],
+      expandedTextColor: Colors.indigo,
+      leading: CircleAvatar(
+          child: Icon(Icons.payment_outlined, color: Colors.white),
+          backgroundColor: Colors.indigo),
       title: Text(
         ' Nro Fcatura: ' + scans[i].num_factura,
         style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
@@ -100,11 +103,14 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
               },
               child: Column(
                 children: <Widget>[
-                  Icon(Icons.arrow_upward),
+                  Icon(Icons.arrow_upward, color: Colors.indigo),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 2.0),
                   ),
-                  Text('Cerrar'),
+                  Text(
+                    "Cerrar",
+                    style: TextStyle(color: Colors.indigo),
+                  )
                 ],
               ),
             ),
@@ -118,11 +124,14 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
               },
               child: Column(
                 children: <Widget>[
-                  Icon(Icons.web),
+                  Icon(Icons.web, color: Colors.indigo),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 2.0),
                   ),
-                  Text('DIAN'),
+                  Text(
+                    'DIAN',
+                    style: TextStyle(color: Colors.indigo),
+                  ),
                 ],
               ),
             ),
