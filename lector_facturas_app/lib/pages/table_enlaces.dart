@@ -133,7 +133,7 @@ class _EnlacesTableState extends State<EnlacesTable> {
                 DataColumn(
                     label: Text('TIPO',
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Colors.indigo, fontWeight: FontWeight.bold)),
                     onSort: (columnIndex, _) {
                       setState(() {
                         _currentSortColumn = columnIndex;

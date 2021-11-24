@@ -2,12 +2,8 @@
     "nombreApp": "LectorQR",
     "variables": [
         {
-            "nombre": "Cufe||Cude",
+            "nombre": "Cufe",
             "sintaxis": [
-                "CUDE=https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
-                "CUDE:https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
-                "CUDE=",
-                "CUDE:",
                 "CUFE=https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
                 "CUFE:https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
                 "CUFE=",
@@ -15,6 +11,17 @@
                 
             ]
         },
+        {
+            "nombre": "Cude",
+            "sintaxis": [
+                "CUDE=https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
+                "CUDE:https://catalogo-vpfe.dian.gov.co/document/searchqr?documentkey=",
+                "CUDE=",
+                "CUDE:"
+                
+            ]
+        },
+        
         {
             "nombre": "NumFactura",
             "sintaxis": [

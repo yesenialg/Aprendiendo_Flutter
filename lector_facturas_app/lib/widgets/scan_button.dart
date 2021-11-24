@@ -17,6 +17,7 @@ class ScanButton extends StatelessWidget {
       heroTag: "scan",
       onPressed: () async {
         try {
+          variables_qr.clear();
           String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
               '#3D8BEF', 'Cancelar', false, ScanMode.QR);
 
@@ -26,9 +27,10 @@ class ScanButton extends StatelessWidget {
             String doc = barcodeScanRes.toString();
 
             if (doc.contains("CUFE") || doc.contains("CUDE")) {
-              String tipo='';
-              doc.contains("CUFE")? tipo='Factura': tipo='Nota credito';
-              var cufe = await separarDatos(doc, scanListProvider, context,tipo);
+              String tipo = '';
+              doc.contains("CUFE") ? tipo = 'Factura' : tipo = 'Nota credito';
+              var cufe =
+                  await separarDatos(doc, scanListProvider, context, tipo);
               final url_dian =
                   'https://catalogo-vpfe.dian.gov.co/Document/ShowDocumentToPublic/$cufe';
               await launch(url_dian);
@@ -78,7 +80,8 @@ class ScanButton extends StatelessWidget {
     return (variable.replaceAll(" ", ""));
   }
 
-  Future<String?> separarDatos(doc, scanListProvider, context,tipo) async {
+  Future<String?> separarDatos(doc, scanListProvider, context, tipo) async {
+    variables_qr.clear();
     int enter = 0;
 
     doc.runes.forEach((int rune) {
@@ -95,6 +98,7 @@ class ScanButton extends StatelessWidget {
     for (int i = 0; i < 6; i++) {
       json.add(await variablesQrProvider.cargarData(i));
     }
+    variables_qr.clear();
 
     for (int i = 0; i < json.length; i++) {
       for (int j = 0; j < json[i].length; j++) {
@@ -104,6 +108,7 @@ class ScanButton extends StatelessWidget {
         }
       }
     }
+
 
     String cufe = getDataQR(doc, variables_qr[0], '\n');
     cufe = cufe.replaceAll(" ", "").replaceAll('\n', "");
@@ -120,8 +125,8 @@ class ScanButton extends StatelessWidget {
     // ignore: prefer_conditional_assignment
 
     if (scan == null) {
-      scan = await scanListProvider.nuevoScan(
-          cufe, fecha, double.parse(total), num_factura, doc, establecimiento,tipo);
+      scan = await scanListProvider.nuevoScan(cufe, fecha, double.parse(total),
+          num_factura, doc, establecimiento, tipo);
     }
 
     return cufe;

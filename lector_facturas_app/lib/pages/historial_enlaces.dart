@@ -58,6 +58,8 @@ class _EnlacesPageState extends State<EnlacesPage> {
 
 Widget _buildScanModelList(BuildContext context, List scans, int i) {
   final GlobalKey<ExpansionTileCardState> cardA = GlobalKey();
+  String tipo = 'CUFE';
+  
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
     child: ExpansionTileCard(
@@ -69,12 +71,16 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
           child: Icon(Icons.payment_outlined, color: Colors.white),
           backgroundColor: Colors.indigo),
       title: Text(
-        ' Nro Fcatura: ' + scans[i].num_factura,
+        ' Nro Factura: ' + scans[i].num_factura,
         style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+      
       ),
+      subtitle:Text(' Tipo: ' + scans[i].tipo, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400)),
       children: <Widget>[
         ListTile(
+          
           title: Text(
+            
             'FECHA: ' +
                 scans[i].fecha +
                 '\n' +
@@ -96,7 +102,6 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
           buttonMinWidth: 90.0,
           children: <Widget>[
             TextButton(
-              
               onPressed: () {
                 cardA.currentState?.collapse();
               },
