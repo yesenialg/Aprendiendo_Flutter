@@ -63,7 +63,7 @@ Widget _buildScanModelList(BuildContext context, List scans, int i) {
     child: ExpansionTileCard(
       key: cardA,
       baseColor: Colors.cyan[50],
-      expandedColor: Colors.red[50],
+      expandedColor: Color.fromRGBO(247, 237, 255, 1.0),
       leading: CircleAvatar(child: Icon(Icons.payment_outlined)),
       title: Text(
         ' Nro Fcatura: ' + scans[i].num_factura,
