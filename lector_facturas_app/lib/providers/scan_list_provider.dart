@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lector_facturas_app/providers/db_provider.dart';
 
-class ScanListProvider extends ChangeNotifier{
+class ScanListProvider extends ChangeNotifier {
   List<ScanModel> scans = [];
 
-  Future<ScanModel> nuevoScan(String cufe,String fecha, double total, String numFactura, String doc, String establecimiento ) async {
-    final nuevoScan = new ScanModel(cufe: cufe,fecha: fecha,total: total,num_factura: numFactura,doc: doc,establecimiento: establecimiento);
+  Future<ScanModel> nuevoScan(String cufe, String fecha, double total,
+      String numFactura, String doc, String establecimiento) async {
+    final nuevoScan = new ScanModel(
+        cufe: cufe,
+        fecha: fecha,
+        total: total,
+        num_factura: numFactura,
+        doc: doc,
+        establecimiento: establecimiento);
     final id = await DBProvider.db.nuevoScanRaw(nuevoScan);
     nuevoScan.id = id;
 
@@ -32,7 +39,7 @@ class ScanListProvider extends ChangeNotifier{
     this.scans = [];
     notifyListeners();
   }
-  
+
   borrarScan(int id) async {
     await DBProvider.db.deleteScan(id);
     this.cargarScans();
