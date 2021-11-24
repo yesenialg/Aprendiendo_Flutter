@@ -103,12 +103,16 @@ class ScanButton extends StatelessWidget {
       }
     }
 
-    final cufe = getDataQR(doc, variables_qr[0], '\n');
-
-    final num_factura = getDataQR(doc, variables_qr[1], '\n');
-    final fecha = getDataQR(doc, variables_qr[2], '\n');
-    final total = (getDataQR(doc, variables_qr[3], '\n'));
-    final establecimiento = getDataQR(doc, variables_qr[4], '\n');
+    String cufe = getDataQR(doc, variables_qr[0], '\n');
+    cufe = cufe.replaceAll(" ", "").replaceAll('\n', "");
+    String num_factura = getDataQR(doc, variables_qr[1], '\n');
+    num_factura = num_factura.replaceAll(" ", "").replaceAll('\n', "");
+    String fecha = getDataQR(doc, variables_qr[2], '\n');
+    fecha = fecha.replaceAll(" ", "").replaceAll('\n', "");
+    String total = (getDataQR(doc, variables_qr[3], '\n'));
+    total = total.replaceAll(" ", "").replaceAll('\n', "");
+    String establecimiento = getDataQR(doc, variables_qr[4], '\n');
+    establecimiento = establecimiento.replaceAll(" ", "").replaceAll('\n', "");
     //final adquiriente=getDataQR(doc, variables_qr[5]+'=', '\n');
     var scan = await equalQR(cufe, context);
     // ignore: prefer_conditional_assignment
