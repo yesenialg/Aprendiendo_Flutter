@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lector_facturas_app/models/scan_model.dart';
 import 'package:lector_facturas_app/providers/scan_list_provider.dart';
-import 'package:lector_facturas_app/utils/utils.dart';
-import 'package:lector_facturas_app/widgets/filter_button.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/rendering.dart';
 

@@ -1,9 +1,7 @@
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:flutter/material.dart';
 import 'package:lector_facturas_app/pages/historial_enlaces.dart';
-import 'package:lector_facturas_app/providers/db_provider.dart';
 import 'package:lector_facturas_app/providers/scan_list_provider.dart';
-import 'package:lector_facturas_app/widgets/custom_navigatorbar.dart';
 import 'package:lector_facturas_app/widgets/history_button.dart';
 import 'package:lector_facturas_app/widgets/scan_button.dart';
 import 'package:provider/provider.dart';
